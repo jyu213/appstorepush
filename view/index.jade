@@ -5,6 +5,7 @@ html(lang="en")
   body
     h1 hello
     each item in results
+      img(src=item.artworkUrl100)
       p 名称：
         a(href=item.trackViewUrl) item.trackName
       p 价格：#{item.price}
