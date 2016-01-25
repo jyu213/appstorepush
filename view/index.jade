@@ -1,0 +1,14 @@
+doctype html
+html(lang="en")
+  head
+    title= hello
+  body
+    h1 hello
+    each item in results
+      p 名称：
+        a(href=item.trackViewUrl) item.trackName
+      p 价格：#{item.price}
+      p 设备支持：#{item.supportedDevices}
+      p ID：#{item.artistId}
+      p 版本：#{item.version}
+      p 描述：#{item.description}
