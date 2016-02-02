@@ -1,15 +1,19 @@
 doctype html
 html(lang="en")
   head
-    title= hello
+    title= 'app store search'
+    link(href='//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css',rel="stylesheet")
+    script(src='//cdn.bootcss.com/jquery/1.11.3/jquery.min.js')
+    script(src='//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js')
   body
-    h1 hello
-    each item in results
-      img(src=item.artworkUrl100)
-      p 名称：
-        a(href=item.trackViewUrl) item.trackName
-      p 价格：#{item.price}
-      p 设备支持：#{item.supportedDevices}
-      p ID：#{item.artistId}
-      p 版本：#{item.version}
-      p 描述：#{item.description}
+    div.container
+      div.row
+        div.form-inline
+          div.form-group
+            label 搜索词
+            input.form-control(type='text')
+          div.form-group
+            select.form-control
+              option(value='CN') 大陆
+              option(value='US') 美区
+
