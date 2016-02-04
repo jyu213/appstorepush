@@ -1,17 +1,22 @@
 import logging
 logging.basicConfig(level=logging.INFO)
 
-from urllib import request, parse
+'''
+wish 搜索抓取模块
+'''
+__author__ = 'jianjian'
+
 import json
-from pymongo import MongoClient
+from urllib import request, parse
 from datetime import datetime
+from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
 db = client['app_store_list_db']
 collection = db['app_store_list_collection']
 wishs = db.wishs
 
-list_file = open('./data/wish_app_list.json', 'r', encoding="utf-8")
+list_file = open('./data/wish_app_list.json', 'r', encoding='utf-8')
 list = json.loads(list_file.read())
 ids = list['data']
 # print(ids)

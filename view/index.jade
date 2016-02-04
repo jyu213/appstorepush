@@ -2,18 +2,38 @@ doctype html
 html(lang="en")
   head
     title= 'app store search'
+    meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
     link(href='//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css',rel="stylesheet")
     script(src='//cdn.bootcss.com/jquery/1.11.3/jquery.min.js')
     script(src='//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js')
   body
+    nav.navbar.navbar-default
+      div.container
+        div.navbar-header
+          a.navbar-brand App 推送
+        div#navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a 搜索
+            li
+              a 排行
+            li
+              a 通知
     div.container
       div.row
         div.form-inline
           div.form-group
             label 搜索词
-            input.form-control(type='text')
+            input.form-control.J-sub-ipt(type='text', value="day+one")
           div.form-group
-            select.form-control
-              option(value='CN') 大陆
+            select.form-control.J-sub-country
+              option(value='CN', checked="checked") 大陆
               option(value='US') 美区
+          a.btn.btn-default.J-sub-btn 搜索
+      hr
+      div.result-list.row.J-result-list
+      nav
+        ul#pager.pager
+    script(src='./dist/js/search.js')
+
 

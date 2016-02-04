@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "NODE_ENV=production webpack -p --progress --colors",
+    "dev": "NODE_ENV=dev webpack --progress --colors --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "require": "^2.4.20"
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.3.13",
+    "require": "^2.4.20",
+    "webpack": "^1.12.12"
   }
 }
