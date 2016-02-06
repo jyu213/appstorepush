@@ -11,11 +11,12 @@ __author__ = 'jianjian'
 # TODO: appid 过期时效点
 # TODO: 价格波动
 
+import re
 import time
 import json
 from urllib import request, parse
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from pymongo import MongoClient
 
@@ -55,7 +56,26 @@ for item in listContent:
         description = details.find(class_='description').string
         price = item.find(class_='price').contents[0]
         source = 'appshopper'
-        today = datetime.today();
+        publish_date_text = item.find(class_='last-updated').string
+        current_date = datetime.now();
+        today = current_date.strftime("%Y-%m-%d %H:%M:%S")
+
+        # 实际天数转化, 1 days ago| 12 hours ago
+        publish_list = re.split('\s', publish_date_text)
+        publish_time_type = publish_list[1]
+        publish_time = int(publish_list[0])
+        # cur = current_date + timedelta(publish_time_type=-publish_time)
+        # print(cur)
+        if re.match('minute', publish_time_type):
+            publish_date = current_date + timedelta(minutes=-publish_time)
+        elif re.match('hour', publish_time_type):
+            publish_date = current_date + timedelta(hours=-publish_time)
+        elif re.match('day', publish_time_type):
+            publish_date = current_date + timedelta(days=-publish_time)
+        else:
+            pass
+
+        print(publish_date, 'publish_date')
 
         exist_appid = db_freeze.find_one({'appid': appid})
         info_common_json = {
@@ -67,6 +87,7 @@ for item in listContent:
             'category': category,
             'description': description,
             'price': price,
+            'publishTime': publish_date.strftime("%Y-%m-%d %H:%M:%S"),
             'modifyTime': today
         }
         info_first_json = {
