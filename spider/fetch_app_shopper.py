@@ -95,7 +95,7 @@ def fetchData(idx = 1, url = APP_SHOPPER_MAC_URL):
                 'appid': appid,
                 'createTime': today,
                 'source': source,
-                'type': 'down'
+                'type': 'drop'
             }
 
             if exist_appid:
