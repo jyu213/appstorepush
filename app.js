@@ -17,6 +17,7 @@ let port = process.env.PORT || 3000;
 let index = require('./router/index');
 let search = require('./api/search');
 let drop = require('./router/drop');
+let top = require('./router/top');
 
 let jade = new Jade({
     viewPath: './view',
@@ -30,6 +31,10 @@ router.get('/search', search.index);
 router.get('/drop', drop.list_page);
 router.get('/drop/:page', drop.list_page);
 router.get('/drop2', drop.list_rss);
+router.get('/drop/:page', drop.list_rss);
+// Top list
+router.get('/top', top.list);
+router.get('/top/:page', top.list);
 
 app.use(router.routes());
 app.use(staticServer(path.join(__dirname + '/static')));

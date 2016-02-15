@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+  head
+    title= 'app store drop list from rss'
+    meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    link(href='//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css',rel="stylesheet")
+    script(src='//cdn.bootcss.com/jquery/1.11.3/jquery.min.js')
+    script(src='//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js')
+  body
+    nav.navbar.navbar-default
+      div.container
+        div.navbar-header
+          a.navbar-brand App list
+        div#navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a 搜索
+            li
+              a 排行
+            li
+              a 通知
+    div.container
+      div.result-list.row.J-list
+      each item in items
+        div !{item.info}
+      nav
+        ul#pager.pager
+          li
+            a(href="/drop/#{currentPager-1 < 1 ? 1 : currentPager-1 }") 上一页
+          li
+            a #{currentPager} / #{totalPager}
+          li
+            a(href="/drop/#{currentPager+1 > totalPager ? totalPager : currentPager+1 }") 下一页

@@ -102,6 +102,8 @@ def fetchData(idx = 1, url = APP_SHOPPER_MAC_URL):
                 db_freeze.find_one_and_update({'appid': appid}, {'$set': info_common_json})
             else:
                 db_freeze.insert_one(dict(info_common_json, **info_first_json))
+        except:
+            pass
         finally:
             pass
 

@@ -67,6 +67,8 @@ def fetchData(url):
             }
 
             db_freeze.insert_one(dict(info_common_json, **info_first_json))
+        except:
+            pass
         finally:
             pass
 
