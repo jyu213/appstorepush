@@ -17,7 +17,7 @@ from datetime import datetime, timedelta
 from pymongo import MongoClient
 
 start_time = datetime.now()
-logging.info('start time: %s', start_time)
+logging.info('fetch_app_shopper_rss.py / start time: %s', start_time)
 
 client = MongoClient('localhost', 27017)
 db = client['app_store_list_db']

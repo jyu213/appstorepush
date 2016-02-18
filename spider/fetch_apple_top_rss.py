@@ -10,16 +10,12 @@ __author__ = 'jianjian'
 
 from lxml import etree
 # from bs4 import BeautifulSoup
+from multiprocessing import Pool
 from datetime import datetime
 from pymongo import MongoClient
 
 start_time = datetime.now()
-logging.info('start time: %s', start_time)
-
-client = MongoClient('localhost', 27017)
-db = client['app_store_list_db']
-collection = db['app_store_list_collection']
-db_table = db.top_rss
+logging.info('fetch_apple_top_rss.py / start time: %s', start_time)
 
 APPLE_TOP_BASIC = 'http://itunes.apple.com/cn/rss/'
 APPLE_TOP_LIST_URL = ['toppaidmacapps',
@@ -41,6 +37,12 @@ def nsAttrib(key, ns):
     return '{' + ns + '}' + key
 
 def fetchData(url):
+    client = MongoClient('localhost', 27017)
+    db = client['app_store_list_db']
+    collection = db['app_store_list_collection']
+    # db_table = db.top_rss
+    db_table = db.top_rss_test
+
     URL = APPLE_TOP_BASIC + url + '/limit=50/xml'
     ns = {
         'real': 'http://www.w3.org/2005/Atom',
@@ -98,8 +100,14 @@ def fetchData(url):
 
 # TODO: 多进程处理; now is 57s
 # TODO: 抓取内容分类
-for url in APPLE_TOP_LIST_URL:
-    fetchData(url)
+p = Pool(8)
+# for url in APPLE_TOP_LIST_URL:
+#     p.apply_async(fetchData(url), args(url,))
+p.map_async(fetchData, APPLE_TOP_LIST_URL)
+p.close()
+p.join()
+
+
 
 end_time = datetime.now()
 logging.info('end time: %s', end_time)

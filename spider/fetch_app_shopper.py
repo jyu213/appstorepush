@@ -19,7 +19,7 @@ from datetime import datetime, timedelta
 from pymongo import MongoClient
 
 start_time = datetime.now()
-logging.info('start time: %s', start_time)
+logging.info('apple_shopper.py / start time: %s', start_time)
 
 client = MongoClient('localhost', 27017)
 db = client['app_store_list_db']
