@@ -40,8 +40,7 @@ def fetchData(url):
     client = MongoClient('localhost', 27017)
     db = client['app_store_list_db']
     collection = db['app_store_list_collection']
-    # db_table = db.top_rss
-    db_table = db.top_rss_test
+    db_table = db.top_rss
 
     URL = APPLE_TOP_BASIC + url + '/limit=50/xml'
     ns = {
