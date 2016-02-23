@@ -1,9 +1,9 @@
 #!/bin/sh
 # Fetch apple data
 
-curdirname=`pwd`
-floder=${curdirname}/spider
-for file_a in ${floder}/*; do
+path=/Library/WebServer/Documents/nodejs/appstorepush
+floder=./spider
+for file_a in ${path}/spider/*; do
     python3 $file_a
 done
-echo $(date +%Y%m%d) >> ${curdirname}/logs/fetch.log
+echo $(date +%Y%m%d) >> ${path}/logs/fetch.log
